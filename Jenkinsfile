@@ -10,7 +10,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t muzammilpasha4/phpproject:v1 .'
+                    sh 'docker build -t muzammilp/phpproject:v1 .'
                 }
             }
         }
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'First-pwd', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                     sh "echo $PASS | docker login -u $USER --password-stdin"
-                    sh 'docker push muzammilpasha4/phpproject:v1'
+                    sh 'docker push muzammilp/phpproject:v1'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
      stage('Deploy') {
             steps {
                script {
-                    def dockerCmd = 'sudo docker run -itd --name My-first-containe21 -p 8081:80 muzammilpasha4/phpproject:v1'
+                    def dockerCmd = 'sudo docker run -itd --name My-first-containe21 -p 8081:80 muzammilp/phpproject:v1'
                     sshagent(['sshkeypair']) {
                         //chnage the private ip in below code
                         // sh "docker run -itd --name My-first-containe211 -p 8082:80 muzammilpasha4/phpproject:v1"
