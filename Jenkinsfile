@@ -3,14 +3,14 @@ pipeline {
     stages{
         stage('Build Maven'){
             steps{
-                git url:'https://github.com/akshu20791/php-project/', branch: "master"
+                git url:'https://github.com/muzammilpasha4/php-project', branch: "master"
               
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t akshu20791/phpproject:v1 .'
+                    sh 'docker build -t muzammilpasha4/phpproject:v1 .'
                 }
             }
         }
